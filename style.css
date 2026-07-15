@@ -1,0 +1,98 @@
+{% extends "base.html" %}
+{% block title %}Find Your Crop | OptiCrop{% endblock %}
+
+{% block content %}
+<section class="page-hero compact">
+    <div class="container narrow">
+        <span class="eyebrow">Crop recommendation</span>
+        <h1>Find the most suitable crop</h1>
+        <p>Enter your soil and environmental values below.</p>
+    </div>
+</section>
+
+<section class="section predict-section">
+    <div class="container prediction-layout">
+        <div class="form-card">
+            <div class="form-card-header">
+                <div>
+                    <span class="eyebrow">Field data</span>
+                    <h2>Agricultural Parameters</h2>
+                </div>
+                <div class="form-badge">🌱</div>
+            </div>
+
+            {% if error %}
+                <div class="alert error">{{ error }}</div>
+            {% endif %}
+
+            <form method="post" action="{{ url_for('predict') }}">
+                <div class="form-grid">
+                    <div class="input-group">
+                        <label for="N">Nitrogen (N)</label>
+                        <input type="number" step="any" id="N" name="N" placeholder="Example: 90"
+                               value="{{ values.get('N', '') }}" required>
+                    </div>
+                    <div class="input-group">
+                        <label for="P">Phosphorous (P)</label>
+                        <input type="number" step="any" id="P" name="P" placeholder="Example: 42"
+                               value="{{ values.get('P', '') }}" required>
+                    </div>
+                    <div class="input-group">
+                        <label for="K">Potassium (K)</label>
+                        <input type="number" step="any" id="K" name="K" placeholder="Example: 43"
+                               value="{{ values.get('K', '') }}" required>
+                    </div>
+                    <div class="input-group">
+                        <label for="temperature">Temperature (°C)</label>
+                        <input type="number" step="any" id="temperature" name="temperature" placeholder="Example: 20.8"
+                               value="{{ values.get('temperature', '') }}" required>
+                    </div>
+                    <div class="input-group">
+                        <label for="humidity">Humidity (%)</label>
+                        <input type="number" step="any" id="humidity" name="humidity" placeholder="Example: 82"
+                               value="{{ values.get('humidity', '') }}" required>
+                    </div>
+                    <div class="input-group">
+                        <label for="ph">Soil pH</label>
+                        <input type="number" step="any" id="ph" name="ph" placeholder="Example: 6.5"
+                               value="{{ values.get('ph', '') }}" required>
+                    </div>
+                    <div class="input-group full">
+                        <label for="rainfall">Rainfall (mm)</label>
+                        <input type="number" step="any" id="rainfall" name="rainfall" placeholder="Example: 202"
+                               value="{{ values.get('rainfall', '') }}" required>
+                    </div>
+                </div>
+
+                <button class="btn btn-primary submit-btn" type="submit">Predict Suitable Crop</button>
+            </form>
+        </div>
+
+        <aside class="result-card {% if result %}has-result{% endif %}">
+            {% if result %}
+                <div class="result-icon">🌾</div>
+                <span class="eyebrow">Recommended crop</span>
+                <h2>{{ result }}</h2>
+                {% if confidence is not none %}
+                    <div class="confidence">
+                        <span>Model confidence</span>
+                        <strong>{{ confidence }}%</strong>
+                    </div>
+                {% endif %}
+                <p>{{ note }}</p>
+                <a href="{{ url_for('predict') }}" class="text-link">Try another prediction →</a>
+            {% else %}
+                <div class="empty-result">
+                    <div class="result-icon">🌱</div>
+                    <h2>Your result will appear here</h2>
+                    <p>Complete the form and select “Predict Suitable Crop”.</p>
+                    <div class="tip">
+                        <strong>Tip</strong>
+                        <span>Use realistic values for better results.</span>
+                    </div>
+                </div>
+            {% endif %}
+        </aside>
+    </div>
+</section>
+{% endblock %}

@@ -1,0 +1,64 @@
+{% extends "base.html" %}
+{% block title %}About | OptiCrop{% endblock %}
+
+{% block content %}
+<section class="page-hero">
+    <div class="container narrow">
+        <span class="eyebrow">About the project</span>
+        <h1>Smart Agricultural Production Optimization</h1>
+        <p>
+            OptiCrop is a machine learning application that recommends suitable crops
+            using important soil and environmental parameters.
+        </p>
+    </div>
+</section>
+
+<section class="section">
+    <div class="container about-grid">
+        <div class="about-panel">
+            <h2>The problem we solve</h2>
+            <p>
+                Farmers may experience low yield or financial loss when crop selection
+                does not match soil nutrients and climate conditions. OptiCrop helps
+                users make a data-supported crop choice.
+            </p>
+            <p>
+                The model analyzes Nitrogen, Phosphorous, Potassium, temperature,
+                humidity, pH and rainfall before generating a recommendation.
+            </p>
+        </div>
+
+        <div class="about-visual">
+            <div class="about-emoji">🌾</div>
+            <h3>Technology for sustainable farming</h3>
+            <p>Python · Flask · Pandas · Scikit-learn · HTML · CSS</p>
+        </div>
+    </div>
+</section>
+
+<section class="section muted">
+    <div class="container">
+        <div class="section-heading">
+            <span class="eyebrow">Project goals</span>
+            <h2>Designed around agricultural decision support</h2>
+        </div>
+        <div class="feature-grid three">
+            <article class="feature-card">
+                <div class="feature-icon">📈</div>
+                <h3>Improve Productivity</h3>
+                <p>Support crop choices that are better aligned with available conditions.</p>
+            </article>
+            <article class="feature-card">
+                <div class="feature-icon">💧</div>
+                <h3>Use Resources Wisely</h3>
+                <p>Encourage efficient use of water, nutrients and other farm inputs.</p>
+            </article>
+            <article class="feature-card">
+                <div class="feature-icon">🌍</div>
+                <h3>Promote Sustainability</h3>
+                <p>Enable smarter, technology-supported farming practices.</p>
+            </article>
+        </div>
+    </div>
+</section>
+{% endblock %}

@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}OptiCrop{% endblock %}</title>
+    <meta name="description" content="AI-powered crop recommendation application">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+    <header class="site-header">
+        <div class="container nav-wrap">
+            <a href="{{ url_for('home') }}" class="brand">
+                <span class="brand-icon">🌿</span>
+                <span>OptiCrop</span>
+            </a>
+
+            <button class="menu-btn" id="menuBtn" aria-label="Open navigation">☰</button>
+
+            <nav id="mainNav">
+                <a href="{{ url_for('home') }}" class="{% if request.endpoint == 'home' %}active{% endif %}">Home</a>
+                <a href="{{ url_for('about') }}" class="{% if request.endpoint == 'about' %}active{% endif %}">About</a>
+                <a href="{{ url_for('predict') }}" class="{% if request.endpoint == 'predict' %}active{% endif %}">Find Your Crop</a>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        {% block content %}{% endblock %}
+    </main>
+
+    <footer>
+        <div class="container footer-grid">
+            <div>
+                <div class="brand footer-brand"><span class="brand-icon">🌿</span><span>OptiCrop</span></div>
+                <p>Smart Agricultural Production Optimization using machine learning.</p>
+            </div>
+            <div>
+                <h4>Quick Links</h4>
+                <a href="{{ url_for('home') }}">Home</a>
+                <a href="{{ url_for('about') }}">About</a>
+                <a href="{{ url_for('predict') }}">Find Your Crop</a>
+            </div>
+            <div>
+                <h4>Project</h4>
+                <p>Built with Python, Flask, HTML, CSS and Scikit-learn.</p>
+            </div>
+        </div>
+        <div class="copyright">© 2026 OptiCrop. Built for smart and sustainable farming.</div>
+    </footer>
+
+    <script src="{{ url_for('static', filename='js/main.js') }}"></script>
+</body>
+</html>

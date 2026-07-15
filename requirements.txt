@@ -1,0 +1,49 @@
+from pathlib import Path
+import pickle
+import pandas as pd
+from sklearn.model_selection import train_test_split
+from sklearn.pipeline import Pipeline
+from sklearn.preprocessing import StandardScaler
+from sklearn.linear_model import LogisticRegression
+from sklearn.metrics import accuracy_score, classification_report
+
+BASE_DIR = Path(__file__).resolve().parent
+DATA_PATH = BASE_DIR / "data" / "crop_recommendation_sample.csv"
+MODEL_PATH = BASE_DIR / "model.pkl"
+
+data = pd.read_csv(DATA_PATH)
+data = data.rename(columns={
+    "nitrogen": "N",
+    "phosphorous": "P",
+    "phosphorus": "P",
+    "potassium": "K"
+})
+
+required = ["N", "P", "K", "temperature", "humidity", "ph", "rainfall", "label"]
+missing = [column for column in required if column not in data.columns]
+if missing:
+    raise ValueError(f"Missing required columns: {missing}")
+
+data = data.dropna(subset=required)
+X = data[required[:-1]]
+y = data["label"]
+
+X_train, X_test, y_train, y_test = train_test_split(
+    X, y, test_size=0.20, random_state=42, stratify=y
+)
+
+model = Pipeline([
+    ("scaler", StandardScaler()),
+    ("classifier", LogisticRegression(max_iter=3000, random_state=42))
+])
+
+model.fit(X_train, y_train)
+predictions = model.predict(X_test)
+
+print(f"Accuracy: {accuracy_score(y_test, predictions):.4f}")
+print(classification_report(y_test, predictions))
+
+with open(MODEL_PATH, "wb") as file:
+    pickle.dump(model, file)
+
+print(f"Saved model to {MODEL_PATH}")

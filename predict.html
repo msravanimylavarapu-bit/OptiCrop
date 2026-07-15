@@ -1,0 +1,109 @@
+{% extends "base.html" %}
+{% block title %}OptiCrop | Smart Crop Recommendation{% endblock %}
+
+{% block content %}
+<section class="hero">
+    <div class="container hero-grid">
+        <div class="hero-copy">
+            <span class="eyebrow">AI-powered smart farming</span>
+            <h1>Grow Smarter.<br><span>Harvest Better.</span></h1>
+            <p>
+                Get intelligent crop recommendations based on your soil nutrients,
+                temperature, humidity, pH and rainfall conditions.
+            </p>
+            <div class="hero-actions">
+                <a href="{{ url_for('predict') }}" class="btn btn-primary">Find Your Crop</a>
+                <a href="{{ url_for('about') }}" class="btn btn-secondary">Learn More</a>
+            </div>
+            <div class="hero-stats">
+                <div><strong>7</strong><span>Input Factors</span></div>
+                <div><strong>22</strong><span>Crop Classes</span></div>
+                <div><strong>ML</strong><span>Powered</span></div>
+            </div>
+        </div>
+
+        <div class="hero-art">
+            <div class="sun"></div>
+            <div class="cloud cloud-one"></div>
+            <div class="cloud cloud-two"></div>
+            <div class="hill hill-back"></div>
+            <div class="hill hill-front"></div>
+            <div class="field-lines"></div>
+            <div class="tractor">🚜</div>
+            <div class="plant plant-a">🌱</div>
+            <div class="plant plant-b">🌱</div>
+            <div class="plant plant-c">🌱</div>
+        </div>
+    </div>
+</section>
+
+<section class="section feature-section">
+    <div class="container">
+        <div class="section-heading">
+            <span class="eyebrow">Why OptiCrop?</span>
+            <h2>Simple inputs. Smarter decisions.</h2>
+            <p>Our model studies key agricultural factors and suggests a crop suitable for the supplied conditions.</p>
+        </div>
+
+        <div class="feature-grid">
+            <article class="feature-card">
+                <div class="feature-icon">🧪</div>
+                <h3>Soil Analysis</h3>
+                <p>Uses Nitrogen, Phosphorous, Potassium and pH values for prediction.</p>
+            </article>
+            <article class="feature-card">
+                <div class="feature-icon">🌦️</div>
+                <h3>Climate Awareness</h3>
+                <p>Considers temperature, humidity and rainfall conditions.</p>
+            </article>
+            <article class="feature-card">
+                <div class="feature-icon">🤖</div>
+                <h3>Machine Learning</h3>
+                <p>Uses a trained classification model to generate fast recommendations.</p>
+            </article>
+            <article class="feature-card">
+                <div class="feature-icon">🌾</div>
+                <h3>Better Planning</h3>
+                <p>Supports data-driven crop selection and sustainable farming decisions.</p>
+            </article>
+        </div>
+    </div>
+</section>
+
+<section class="section how-section">
+    <div class="container">
+        <div class="section-heading">
+            <span class="eyebrow">How it works</span>
+            <h2>Three easy steps</h2>
+        </div>
+
+        <div class="steps">
+            <div class="step">
+                <span>01</span>
+                <h3>Enter Soil Data</h3>
+                <p>Provide nutrient values and climate conditions.</p>
+            </div>
+            <div class="step">
+                <span>02</span>
+                <h3>Model Analysis</h3>
+                <p>The trained model evaluates your agricultural inputs.</p>
+            </div>
+            <div class="step">
+                <span>03</span>
+                <h3>Get Recommendation</h3>
+                <p>Receive the most suitable predicted crop instantly.</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="cta-section">
+    <div class="container cta-box">
+        <div>
+            <span class="eyebrow light">Ready to begin?</span>
+            <h2>Discover the right crop for your field.</h2>
+        </div>
+        <a href="{{ url_for('predict') }}" class="btn btn-light">Start Prediction</a>
+    </div>
+</section>
+{% endblock %}
